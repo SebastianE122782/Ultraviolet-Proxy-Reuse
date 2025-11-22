@@ -19,57 +19,90 @@
   </script>
 
   <style>
+    /* STARFIELD BACKGROUND */
     body {
       margin: 0;
-      background: #121212;
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', sans-serif;
       height: 100vh;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
+      background: radial-gradient(circle at center, #0a0a16 0%, #000008 100%);
     }
 
-    /* Top toolbar */
+    /* Animated drifting stars */
+    body::before, body::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 200%; height: 200%;
+      background: transparent url('https://raw.githubusercontent.com/mrcode10s/Assets/main/stars1.png') repeat;
+      animation: drift 80s linear infinite;
+      pointer-events: none;
+      opacity: 0.45;
+    }
+
+    body::after {
+      background-image: url('https://raw.githubusercontent.com/mrcode10s/Assets/main/stars2.png');
+      animation-duration: 120s;
+      opacity: 0.25;
+    }
+
+    @keyframes drift {
+      from { transform: translate(0, 0); }
+      to   { transform: translate(-50%, -50%); }
+    }
+
+    /* Toolbar - neon sci-fi */
     .toolbar {
       width: 100%;
-      padding: 12px;
-      background: #1e1e1e;
+      padding: 18px;
+      background: rgba(0, 20, 60, 0.55);
+      backdrop-filter: blur(12px);
       display: flex;
-      gap: 10px;
-      box-sizing: border-box;
+      gap: 14px;
+      align-items: center;
       border-bottom: 2px solid #00c8ff;
+      box-shadow: 0 0 25px #00c8ff88;
+      z-index: 10;
     }
 
     #urlInput {
       flex: 1;
-      padding: 10px;
-      font-size: 16px;
-      border-radius: 6px;
+      padding: 16px;
+      font-size: 20px;
+      border-radius: 10px;
       border: none;
       outline: none;
-      background: #fff;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 0 10px #00c8ff55;
     }
 
     #searchButton {
-      padding: 10px 18px;
-      font-size: 16px;
+      padding: 16px 28px;
+      font-size: 20px;
       border: none;
-      border-radius: 6px;
+      border-radius: 10px;
       background: #00c8ff;
+      color: black;
       font-weight: bold;
       cursor: pointer;
       transition: 0.2s;
+      box-shadow: 0 0 15px #00c8ffcc;
     }
 
     #searchButton:hover {
-      background: #00e1ff;
+      background: #33dcff;
       transform: scale(1.05);
+      box-shadow: 0 0 20px #00e1ff;
     }
 
     iframe {
       width: 100%;
-      height: calc(100vh - 56px); /* fullscreen minus toolbar */
+      height: calc(100vh - 84px);
       border: none;
-      background: #000;
+      background: black;
+      box-shadow: inset 0 0 40px #001a33;
     }
   </style>
 </head>
